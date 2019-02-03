@@ -1,26 +1,26 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Cards from './components/Cards';
+import Loader from './components/Loader';
+import { CardsConsumer } from './contexts/cards'
+
 import './App.css';
 
 class App extends Component {
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <CardsConsumer>
+        {
+          ({ state: { cardsToRender, loading }, actions: { fetchCards } }) => {
+            return (
+              <div className="App">
+                <Cards cards={cardsToRender} fetchCards={fetchCards} loading={loading} />
+                {loading && <Loader />}
+              </div>
+            )
+          }
+        }
+      </CardsConsumer>
     );
   }
 }

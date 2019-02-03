@@ -22,11 +22,82 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+#grid {
+  display: grid;
+  grid-template-columns: repeat(4, 20fr);
+  column-width: 20vw;
+  grid-gap: 20px;
+  grid-auto-rows: 75px;
+  transition: all 2s ease;
+}
+#grid > div:nth-child(even) {
+  grid-row-end: span 3
+}
+#grid > div:nth-child(odd) {
+  grid-row-end: span 4
+}
+#grid > div {
+  border-radius: 20px;
+}
+#grid > div > div{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#grid div img {
+  width: 94%
+}
+
+#loader {
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+}
+
+#loader > div {
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  background-color: #999;
+  position: relative;
+}
+#loader > div > div {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: #fff;
+  position: absolute;
+}
+#loader > div > div:nth-child(1) {
+  top: 25%;
+  left: 25%;
+}
+#loader > div > div:nth-child(2) {
+  top: 25%;
+  right: 25%;
+}
+#loader > div > div:nth-child(3) {
+  bottom: 25%;
+  left: 25%;
+}
+#loader > div > div:nth-child(4) {
+  bottom: 25%;
+  right: 25%;
+}
+
+
+
+@media only screen and (max-width: 900px) {
+  #grid {
+    grid-template-columns: repeat(3, 30fr);
   }
-  to {
-    transform: rotate(360deg);
+}
+
+@media only screen and (max-width: 600px) {
+  #grid {
+    grid-template-columns: repeat(2, 50fr);
   }
 }
