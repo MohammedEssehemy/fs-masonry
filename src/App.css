@@ -5,7 +5,6 @@
 
 .App {
   min-height: 110vh;
-  /* text-align: center; */
   display: flex;
   flex-direction: row-reverse;
 }
@@ -137,6 +136,10 @@
   top:0;
   left:0;
   color: white;
+  overflow: auto;
+}
+
+#sidebar-content {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -151,10 +154,10 @@
   color: #ccc
 }
 
-#sidebar > p:nth-child(1) {
+#sidebar  p:nth-of-type(1) {
   color: #ddd
 }
-#sidebar > p:nth-of-type(2) {
+#sidebar  p:nth-of-type(2) {
   color: #ddd;
   font-size: 12px;
 }
@@ -171,6 +174,19 @@
   margin: 5px 0;
 }
 
+#toggler {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 5vw;
+  left: 5vw;
+  background-color: #1b1b1c;
+}
+
 
 
 @media only screen and (max-width: 900px) {
@@ -179,8 +195,17 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
+  #content {
+    width: 100vw;
+  }
   #grid {
     grid-template-columns: repeat(2, 50fr);
+  }
+  #sidebar {
+    display: none;
+    width: 70vw;
+    position: absolute;
+    z-index: 10;
   }
 }
