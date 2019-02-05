@@ -10,23 +10,23 @@ export class CardsProvider extends PureComponent {
     page: 1,
     allCards: [],
     cardsToRender: [],
-    loading: false
+    loading: true
   }
 
   fetchCards = async () => {
     this.setState({ loading: true });
     const response = await fetch('http://www.amiiboapi.com/api/amiibo/');
     if (response.ok) {
+      const data = await response.json();
       this.setState({ loading: false })
-      return await response.json();
+      return data;
     }
     this.setState({ loading: false })
-
   }
 
   loadMore = async () => {
     const { allCards, cardsToRender, page } = this.state;
-    if (allCards.length === 0) {
+    if (!allCards.length) {
       const res = await this.fetchCards();
       const allCards = res.amiibo;
       const updatedCardsToRender = res.amiibo.slice(0, page * 20);
@@ -34,16 +34,37 @@ export class CardsProvider extends PureComponent {
       return;
     }
     if (cardsToRender.length < allCards.length) {
-      this.setState({ loading: true })
+      this.setState({
+        loading: true,
+
+      })
       setTimeout(() => {
         this.setState({
           cardsToRender: allCards.slice(0, page * 20),
           page: page + 1,
           loading: false
         })
-      }, 2000);
+      }, 1500);
     }
+
   }
+
+  search = async (name) => {
+    this.setState({ loading: true, allCards: [], cardsToRender: [] })
+    const response = await fetch(`http://www.amiiboapi.com/api/amiibo/?name=${name}`);
+    if (response.ok) {
+      const allCards = (await response.json()).amiibo;
+      const cardsToRender = allCards.slice(0, 20);
+      this.setState({
+        page: 2,
+        allCards,
+        cardsToRender,
+      });
+    }
+    this.setState({ loading: false })
+  }
+
+  reset = () => this.setState({ page: 1, allCards: [], cardsToRender: [] }, this.loadMore)
 
   componentDidMount = async () => {
     this.loadMore()
@@ -51,6 +72,8 @@ export class CardsProvider extends PureComponent {
 
   actions = {
     fetchCards: this.loadMore,
+    search: this.search,
+    reset: this.reset,
   }
 
   render() {
