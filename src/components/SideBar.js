@@ -11,7 +11,7 @@ export default function SideBar() {
       <p>~ JOHN DOE ~</p>
       <p>johndoe@exmple.com</p>
 
-      <div class="contact">
+      <div className="contact">
         <h3>contact</h3>
         <div className="contact-item">
           <Icon style={{ color: '#ccc', margin: '0 10px' }} icon={facebookSquare} />
@@ -23,7 +23,7 @@ export default function SideBar() {
         </div>
       </div>
 
-      <div class="contact">
+      <div className="contact">
         <h3>projects</h3>
         <div className="contact-item">
           <Icon style={{ color: '#ccc', margin: '0 10px' }} icon={dribbble} />
