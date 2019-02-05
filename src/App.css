@@ -5,7 +5,7 @@
 
 .App {
   min-height: 110vh;
-  text-align: center;
+  /* text-align: center; */
   display: flex;
   flex-direction: row-reverse;
 }
@@ -136,7 +136,39 @@
   position: fixed;
   top:0;
   left:0;
-  color: white
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sidebar img {
+  border-radius: 50%;
+  margin: 20px 0;
+}
+
+#sidebar span {
+  color: #ccc
+}
+
+#sidebar > p:nth-child(1) {
+  color: #ddd
+}
+#sidebar > p:nth-of-type(2) {
+  color: #ddd;
+  font-size: 12px;
+}
+#sidebar .contact {
+  margin-top: 40px;
+}
+#sidebar .contact h3 {
+  color: #888;
+  margin: 15px 0 ;
+  text-align: center;
+}
+#sidebar .contact .contact-item {
+  font-size: 12px;
+  margin: 5px 0;
 }
 
 
