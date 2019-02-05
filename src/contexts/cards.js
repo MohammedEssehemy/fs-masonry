@@ -51,7 +51,7 @@ export class CardsProvider extends PureComponent {
 
   search = async (name) => {
     this.setState({ loading: true, allCards: [], cardsToRender: [] })
-    const response = await fetch(`http://www.amiiboapi.com/api/amiibo/?name=${name}`);
+    const response = await fetch(`http://www.amiiboapi.com/api/amiibo/${name && '?name=' + name}`);
     if (response.ok) {
       const allCards = (await response.json()).amiibo;
       const cardsToRender = allCards.slice(0, 20);
