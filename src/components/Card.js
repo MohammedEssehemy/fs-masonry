@@ -16,8 +16,9 @@ export default class Card extends Component {
   onLoad = () => {
     if (this.content.current && this.ref.current) {
       const height = this.content.current.getBoundingClientRect().height;
-      const spansHeight = Math.ceil(height / 75) * 10;
-      this.ref.current.style.gridRowEnd = `span ${Math.ceil((height - spansHeight) / 75)}`;
+      // noOfRows = (itemHeight + grid-row-gap)  / (rowHeight + grid-row-gap)
+      const rowSpan = Math.ceil((height + 20) / (30 + 20));
+      this.ref.current.style.gridRowEnd = `span ${rowSpan}`;
       this.ref.current.style.backgroundColor = '#ddd';
       this.content.current.style.opacity = '1';
     }
